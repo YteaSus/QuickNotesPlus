@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">QuickNotes+</string>
+    <string name="search_hint">Поиск заметок...</string>
+    <string name="add_note">Добавить заметку</string>
+    <string name="edit_note">Редактирование</string>
+    <string name="save">Сохранить</string>
+    <string name="back">Назад</string>
+    <string name="title_hint">Заголовок</string>
+    <string name="content_hint">Текст заметки…</string>
+    <string name="enter_title">Введите заголовок</string>
+    <string name="enter_content">Введите текст заметки</string>
+    <string name="tags">Теги:</string>
+    <string name="manage_tags">Управлять</string>
+    <string name="select_tag">Выберите тег</string>
+    <string name="no_tag">Без тега</string>
+    <string name="manage_tags_title">Управление тегами</string>
+    <string name="new_tag_hint">Новый тег</string>
+    <string name="add_tag">Добавить</string>
+    <string name="enter_tag_name">Введите название тега</string>
+    <string name="tag_exists">Такой тег уже существует</string>
+    <string name="tag_added">Тег \'%s\' добавлен</string>
+    <string name="note_saved">Заметка сохранена ✓</string>
+    <string name="note_updated">Заметка обновлена ✓</string>
+
+    <!-- Тестовые заметки -->
+    <string name="welcome_title">Добро пожаловать!</string>
+    <string name="welcome_content">Это ваше приложение для заметок. Нажмите + чтобы создать новую заметку.</string>
+    <string name="shopping_title">Список покупок</string>
+    <string name="shopping_content">🍎 Яблоки\n🥛 Молоко\n🍞 Хлеб\n🥚 Яйца\n🧀 Сыр</string>
+    <string name="work_title">Рабочие задачи</string>
+    <string name="work_content">1. Подготовить отчет\n2. Создать презентацию\n3. Отправить документы</string>
+
+    <!-- Теги -->
+    <string name="instruction_tag">Инструкция</string>
+    <string name="personal_tag">Личное</string>
+    <string name="work_tag">Работа</string>
+</resources>
