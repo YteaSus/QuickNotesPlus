@@ -1,1 +1,2 @@
-﻿# QuickNotesPlus
+# QuickNotes Plus
+Мобильное приложение для заметок с тегами
