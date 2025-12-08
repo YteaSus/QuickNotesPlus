@@ -109,7 +109,7 @@ class TagsActivity : AppCompatActivity() {
 }
 
 class TagAdapter(
-    private val tags: MutableList<String>,  // Изменили на MutableList для удаления
+    private val tags: MutableList<String>,
     private val onTagClick: (String, Int) -> Unit
 ) : androidx.recyclerview.widget.RecyclerView.Adapter<TagAdapter.TagViewHolder>() {
 
@@ -133,12 +133,10 @@ class TagAdapter(
         }
 
         holder.itemView.setOnLongClickListener {
-            // Используем контекст из itemView
             android.app.AlertDialog.Builder(it.context)
                 .setTitle("Удаление тега")
                 .setMessage("Удалить тег \"$tag\"?")
                 .setPositiveButton("Удалить") { dialog, _ ->
-                    // Удаляем тег
                     tags.removeAt(position)
                     notifyItemRemoved(position)
                     Toast.makeText(it.context, "Тег удален", Toast.LENGTH_SHORT).show()

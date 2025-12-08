@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class NoteAdapter(
-    private val notes: List<Note>,  // Теперь Note доступен
+    private val notes: List<Note>,
     private val onNoteClick: (Note, Int) -> Unit
 ) : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
 

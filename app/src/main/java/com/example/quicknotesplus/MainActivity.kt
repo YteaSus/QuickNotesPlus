@@ -44,7 +44,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        // Загружаем тему перед setContentView
         sharedPref = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
         currentTheme = sharedPref.getString(KEY_THEME, "light") ?: "light"
         applyTheme()
@@ -81,7 +80,7 @@ class MainActivity : AppCompatActivity() {
                 else -> setTheme(R.style.Theme_QuickNotesPlus_Light)
             }
         } catch (e: Exception) {
-            // Если темы нет, используем стандартную
+
             setTheme(android.R.style.Theme_Material_Light)
         }
     }
@@ -144,17 +143,14 @@ class MainActivity : AppCompatActivity() {
                 if (position >= 0 && position < displayedNotesList.size) {
                     val deletedNote = displayedNotesList[position]
 
-                    // Удаляем из обоих списков
                     displayedNotesList.removeAt(position)
                     allNotesList.remove(deletedNote)
                     adapter.notifyItemRemoved(position)
 
                     saveNotesToStorage()
 
-                    // Показываем Snackbar с возможностью отмены
                     Snackbar.make(notesRecyclerView, "Заметка удалена", Snackbar.LENGTH_LONG)
                         .setAction("ОТМЕНИТЬ") {
-                            // Восстанавливаем заметку
                             displayedNotesList.add(position, deletedNote)
                             allNotesList.add(position, deletedNote)
                             adapter.notifyItemInserted(position)
@@ -184,7 +180,7 @@ class MainActivity : AppCompatActivity() {
                 val iconMargin = (itemView.height - deleteIcon!!.intrinsicHeight) / 2
 
                 when {
-                    dX > 0 -> { // Свайп вправо
+                    dX > 0 -> {
                         background.setBounds(
                             itemView.left,
                             itemView.top,
@@ -198,7 +194,7 @@ class MainActivity : AppCompatActivity() {
                             itemView.top + iconMargin + deleteIcon.intrinsicHeight
                         )
                     }
-                    dX < 0 -> { // Свайп влево
+                    dX < 0 -> {
                         background.setBounds(
                             itemView.right + dX.toInt(),
                             itemView.top,
@@ -287,7 +283,6 @@ class MainActivity : AppCompatActivity() {
         startActivityForResult(intent, REQUEST_CODE_EDIT_NOTE)
     }
 
-    // Меню для смены темы (будет в Toolbar)
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
@@ -319,10 +314,8 @@ class MainActivity : AppCompatActivity() {
                 if (newTheme != currentTheme) {
                     currentTheme = newTheme
 
-                    // Сохраняем выбор
                     sharedPref.edit().putString(KEY_THEME, newTheme).apply()
 
-                    // Перезапускаем активити для применения темы
                     recreate()
                 }
                 dialog.dismiss()
