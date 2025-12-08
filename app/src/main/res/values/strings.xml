@@ -23,7 +23,7 @@
     <string name="note_saved">Заметка сохранена ✓</string>
     <string name="note_updated">Заметка обновлена ✓</string>
 
-    <!-- Тестовые заметки -->
+
     <string name="welcome_title">Добро пожаловать!</string>
     <string name="welcome_content">Это ваше приложение для заметок. Нажмите + чтобы создать новую заметку.</string>
     <string name="shopping_title">Список покупок</string>
@@ -31,8 +31,16 @@
     <string name="work_title">Рабочие задачи</string>
     <string name="work_content">1. Подготовить отчет\n2. Создать презентацию\n3. Отправить документы</string>
 
-    <!-- Теги -->
+
     <string name="instruction_tag">Инструкция</string>
     <string name="personal_tag">Личное</string>
     <string name="work_tag">Работа</string>
+    <string name="change_theme">Сменить тему</string>
+    <string name="settings">Настройки</string>
+    <string name="theme_dialog_title">Выберите тему оформления</string>
+    <string name="light_theme">Светлая тема</string>
+    <string name="dark_theme">Темная тема</string>
+    <string name="note_deleted">Заметка удалена</string>
+    <string name="undo">ОТМЕНИТЬ</string>
+    <string name="note_restored">Заметка восстановлена</string>
 </resources>
