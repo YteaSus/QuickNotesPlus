@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="edittext_background">#FFFFFF</color>
+    <color name="on_primary">#FFFFFF</color>
+    <color name="outline">#6750A4</color>
+    <color name="primary">#6750A4</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="secondary">#625B71</color>
+    <color name="surface">#FFFBFE</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="add_tag">Добавить</string>
+    <string name="app_name">QuickNotes+</string>
+    <string name="back">Назад</string>
+    <string name="content_hint">Текст заметки…</string>
+    <string name="edit_note">Редактирование</string>
+    <string name="manage_tags">Управлять</string>
+    <string name="manage_tags_title">Управление тегами</string>
+    <string name="new_tag_hint">Новый тег</string>
+    <string name="save">Сохранить</string>
+    <string name="search_hint">Поиск…</string>
+    <string name="select_tag">Выберите тег</string>
+    <string name="tags">Теги:</string>
+    <string name="title_hint">Заголовок</string>
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <item name="colorPrimary">@color/primary</item>
+
+        <item name="colorPrimaryDark">#3700B3</item>
+
+        <item name="colorSecondary">@color/secondary</item>
+
+        <item name="android:windowBackground">@color/surface</item>
+
+        <item name="android:statusBarColor">?attr/colorPrimaryDark</item>
+    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="Base.Theme.QuickNotesPlus" parent="Theme.Material3.DayNight.NoActionBar">
+        
+        
+    </style>
+    <style name="Theme.QuickNotesPlus" parent="Base.Theme.QuickNotesPlus"/>
+</resources>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="http://schemas.android.com/tools">
+    <attr format="reference|color" name="cardBackground"/>
+    <attr format="reference|color" name="colorBackground"/>
+    <attr format="reference|color" name="textPrimary"/>
+    <attr format="reference|color" name="textSecondary"/>
+    <color name="background">#FFFFFBFE</color>
+    <color name="error">#FFB3261E</color>
+    <color name="errorContainer">#FFF9DEDC</color>
+    <color name="note_card_dark">#1E1E1E</color>
+    <color name="note_card_light">#FFFFFF</color>
+    <color name="onBackground">#FF1C1B1F</color>
+    <color name="onError">#FFFFFFFF</color>
+    <color name="onErrorContainer">#FF410E0B</color>
+    <color name="onPrimary">#FFFFFFFF</color>
+    <color name="onPrimaryContainer">#FF21005D</color>
+    <color name="onSecondary">#FFFFFFFF</color>
+    <color name="onSecondaryContainer">#FF1D192B</color>
+    <color name="onSurface">#FF1C1B1F</color>
+    <color name="onSurfaceVariant">#FF49454F</color>
+    <color name="onTertiary">#FFFFFFFF</color>
+    <color name="onTertiaryContainer">#FF31111D</color>
+    <color name="outline">#FF79747E</color>
+    <color name="outlineVariant">#FFCAC4D0</color>
+    <color name="primary">#FF6200EE</color>
+    <color name="primaryContainer">#FFEADDFF</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="secondary">#FF625B71</color>
+    <color name="secondaryContainer">#FFE8DEF8</color>
+    <color name="surface">#FFFFFBFE</color>
+    <color name="surfaceVariant">#FFE7E0EC</color>
+    <color name="tag_color">#E8DEF8</color>
+    <color name="tag_text_color">#1D192B</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="tertiary">#FF7D5260</color>
+    <color name="tertiaryContainer">#FFFFD8E4</color>
+    <string name="add_note">Добавить заметку</string>
+    <string name="add_tag">Добавить</string>
+    <string name="app_name">QuickNotes+</string>
+    <string name="back">Назад</string>
+    <string name="content_hint">Текст заметки…</string>
+    <string name="edit_note">Редактирование</string>
+    <string name="enter_content">Введите текст заметки</string>
+    <string name="enter_tag_name">Введите название тега</string>
+    <string name="enter_title">Введите заголовок</string>
+    <string name="instruction_tag">Инструкция</string>
+    <string name="manage_tags">Управлять</string>
+    <string name="manage_tags_title">Управление тегами</string>
+    <string name="new_tag_hint">Новый тег</string>
+    <string name="no_tag">Без тега</string>
+    <string name="note_saved">Заметка сохранена ✓</string>
+    <string name="note_updated">Заметка обновлена ✓</string>
+    <string name="personal_tag">Личное</string>
+    <string name="save">Сохранить</string>
+    <string name="search_hint">Поиск заметок...</string>
+    <string name="select_tag">Выберите тег</string>
+    <string name="shopping_content">🍎 Яблоки\n🥛 Молоко\n🍞 Хлеб\n🥚 Яйца\n🧀 Сыр</string>
+    <string name="shopping_title">Список покупок</string>
+    <string name="tag_added">Тег \'%s\' добавлен</string>
+    <string name="tag_exists">Такой тег уже существует</string>
+    <string name="tags">Теги:</string>
+    <string name="title_hint">Заголовок</string>
+    <string name="welcome_content">Это ваше приложение для заметок. Нажмите + чтобы создать новую заметку.</string>
+    <string name="welcome_title">Добро пожаловать!</string>
+    <string name="work_content">1. Подготовить отчет\n2. Создать презентацию\n3. Отправить документы</string>
+    <string name="work_tag">Работа</string>
+    <string name="work_title">Рабочие задачи</string>
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <item name="colorPrimary">@color/primary</item>
+
+        <item name="colorPrimaryDark">#3700B3</item>
+
+        <item name="colorSecondary">@color/secondary</item>
+
+        <item name="android:windowBackground">@color/surface</item>
+
+        <item name="android:statusBarColor">?attr/colorPrimaryDark</item>
+    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="Theme.QuickNotesPlus" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorOnPrimary">@color/onPrimary</item>
+        <item name="colorPrimaryContainer">@color/primaryContainer</item>
+
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorOnSecondary">@color/onSecondary</item>
+        <item name="colorSecondaryContainer">@color/secondaryContainer</item>
+
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/onSurface</item>
+        <item name="colorSurfaceVariant">@color/surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/onSurfaceVariant</item>
+
+        <item name="colorBackground">@color/background</item>
+        <item name="colorOnBackground">@color/onBackground</item>
+
+        <item name="android:statusBarColor" ns1:targetApi="l">?attr/colorPrimaryContainer</item>
+        <item name="android:navigationBarColor" ns1:targetApi="l">?attr/colorSurface</item>
+    </style>
+</resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background">#FF1C1B1F</color>
+    <color name="error">#FFF2B8B5</color>
+    <color name="errorContainer">#FF8C1D18</color>
+    <color name="note_card_dark">#2D2D2D</color>
+    <color name="note_card_light">#1E1E1E</color>
+    <color name="onBackground">#FFE6E1E5</color>
+    <color name="onError">#FF601410</color>
+    <color name="onErrorContainer">#FFF9DEDC</color>
+    <color name="onPrimary">#FF371E73</color>
+    <color name="onPrimaryContainer">#FFEADDFF</color>
+    <color name="onSecondary">#FF332D41</color>
+    <color name="onSecondaryContainer">#FFE8DEF8</color>
+    <color name="onSurface">#FFE6E1E5</color>
+    <color name="onSurfaceVariant">#FFCAC4D0</color>
+    <color name="onTertiary">#FF492532</color>
+    <color name="onTertiaryContainer">#FFFFD8E4</color>
+    <color name="outline">#FF938F99</color>
+    <color name="outlineVariant">#FF49454F</color>
+    <color name="primary">#FFD0BCFF</color>
+    <color name="primaryContainer">#FF4F378B</color>
+    <color name="secondary">#FFCCC2DC</color>
+    <color name="secondaryContainer">#FF4A4458</color>
+    <color name="surface">#FF1C1B1F</color>
+    <color name="surfaceVariant">#FF49454F</color>
+    <color name="tag_color">#4A4458</color>
+    <color name="tag_text_color">#E8DEF8</color>
+    <color name="tertiary">#FFEFB8C8</color>
+    <color name="tertiaryContainer">#FF633B48</color>
+</resources>
