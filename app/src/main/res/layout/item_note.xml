@@ -1,54 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="4dp"
-    app:cardUseCompatPadding="true">
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="?android:attr/selectableItemBackground">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/note_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:background="?attr/selectableItemBackground">
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="?attr/colorOnSurface" />
 
-        <TextView
-            android:id="@+id/note_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Заголовок заметки"
-            android:textColor="@color/primary"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="4dp" />
+    <TextView
+        android:id="@+id/note_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textSize="14sp"
+        android:textColor="?attr/colorOnSurface"
+        android:maxLines="2"
+        android:ellipsize="end" />
 
-        <TextView
-            android:id="@+id/note_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Текст заметки..."
-            android:textSize="14sp"
-            android:maxLines="3"
-            android:ellipsize="end"
-            android:layout_marginBottom="8dp" />
+    <TextView
+        android:id="@+id/note_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="4dp"
+        android:background="@color/teal_200"
+        android:textColor="@color/black"
+        android:textSize="12sp" />
 
-        <TextView
-            android:id="@+id/note_tag"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Тег"
-            android:textSize="12sp"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="4dp"
-            android:background="@drawable/tag_background"
-            android:textColor="@color/primary" />
-
-    </LinearLayout>
-
-</androidx.cardview.widget.CardView>
+</LinearLayout>
