@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/surface"
     android:padding="16dp">
 
     <LinearLayout
@@ -19,20 +17,19 @@
             android:id="@+id/btnBack"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:background="?selectableItemBackgroundBorderless"
-            android:src="@drawable/ic_arrow_back"
-            android:contentDescription="@string/back"
-            android:layout_marginEnd="8dp" />
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Назад" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/manage_tags_title"
-            android:textColor="@color/primary"
+            android:text="Управление тегами"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:gravity="center" />
+            android:gravity="center"
+            android:textColor="?attr/colorOnBackground" />
 
     </LinearLayout>
 
@@ -43,30 +40,49 @@
         android:gravity="center_vertical"
         android:layout_marginBottom="16dp">
 
-        <EditText
-            android:id="@+id/etNewTag"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="@string/new_tag_hint"
-            android:background="@drawable/edittext_background"
-            android:padding="12dp"
-            android:layout_marginEnd="8dp"
-            android:importantForAutofill="yes"
-            android:imeOptions="actionDone" />
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            app:endIconMode="clear_text">
+
+            <EditText
+                android:id="@+id/etNewTag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Новый тег"
+                android:inputType="text"
+                android:maxLines="1"
+                android:imeOptions="actionDone" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/btnAddTag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/add_tag" />
+            android:layout_marginStart="8dp"
+            android:text="Добавить"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/purple_500" />
 
     </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Список тегов:"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp"
+        android:textColor="?attr/colorOnBackground" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tagsListView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:padding="8dp" />
 
 </LinearLayout>

@@ -1,15 +1,25 @@
 package com.example.quicknotesplus
 
 import android.content.Intent
+import android.content.SharedPreferences
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,21 +28,37 @@ class MainActivity : AppCompatActivity() {
     private lateinit var searchBar: EditText
     private lateinit var adapter: NoteAdapter
 
+    private lateinit var sharedPref: SharedPreferences
+    private var currentTheme = "light"
+
     private val allNotesList = mutableListOf<Note>()
     private val displayedNotesList = mutableListOf<Note>()
 
     companion object {
         const val REQUEST_CODE_ADD_NOTE = 100
         const val REQUEST_CODE_EDIT_NOTE = 101
+        const val PREFS_NAME = "app_settings"
+        const val KEY_THEME = "theme"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        sharedPref = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+        currentTheme = sharedPref.getString(KEY_THEME, "light") ?: "light"
+
+
+        if (currentTheme == "light") {
+            setTheme(android.R.style.Theme_Material_Light_NoActionBar)
+        } else {
+            setTheme(android.R.style.Theme_Material_NoActionBar)
+        }
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         initViews()
         loadNotesFromStorage()
         setupNotesList()
+        setupSwipeToDelete()
         setupClickListeners()
         setupSearch()
     }
@@ -59,9 +85,9 @@ class MainActivity : AppCompatActivity() {
     private fun setupNotesList() {
         notesRecyclerView.layoutManager = LinearLayoutManager(this)
 
-        adapter = NoteAdapter(displayedNotesList) { note, position ->
+        adapter = NoteAdapter(displayedNotesList, { note: Note, position: Int ->
             openNoteForEditing(note, position)
-        }
+        })
 
         notesRecyclerView.adapter = adapter
 
@@ -71,6 +97,113 @@ class MainActivity : AppCompatActivity() {
                 LinearLayoutManager.VERTICAL
             )
         )
+    }
+
+    private fun setupSwipeToDelete() {
+        val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
+            0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+        ) {
+
+            private val deleteIcon = ContextCompat.getDrawable(
+                this@MainActivity,
+                android.R.drawable.ic_menu_delete
+            )
+            private val background = ColorDrawable(Color.RED)
+
+            init {
+                deleteIcon?.setTint(Color.WHITE)
+            }
+
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.bindingAdapterPosition
+                if (position >= 0 && position < displayedNotesList.size) {
+                    val deletedNote = displayedNotesList[position]
+
+                    displayedNotesList.removeAt(position)
+                    allNotesList.remove(deletedNote)
+                    adapter.notifyItemRemoved(position)
+
+                    saveNotesToStorage()
+
+                    Snackbar.make(notesRecyclerView, "Заметка удалена", Snackbar.LENGTH_LONG)
+                        .setAction("ОТМЕНИТЬ") {
+                            displayedNotesList.add(position, deletedNote)
+                            allNotesList.add(position, deletedNote)
+                            adapter.notifyItemInserted(position)
+                            saveNotesToStorage()
+                            Toast.makeText(
+                                this@MainActivity,
+                                "Заметка восстановлена",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                        .show()
+                }
+            }
+
+            override fun onChildDraw(
+                c: Canvas,
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                dX: Float,
+                dY: Float,
+                actionState: Int,
+                isCurrentlyActive: Boolean
+            ) {
+                super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+
+                val itemView = viewHolder.itemView
+                val iconMargin = (itemView.height - deleteIcon!!.intrinsicHeight) / 2
+
+                when {
+                    dX > 0 -> {
+                        background.setBounds(
+                            itemView.left,
+                            itemView.top,
+                            itemView.left + dX.toInt(),
+                            itemView.bottom
+                        )
+                        deleteIcon.setBounds(
+                            itemView.left + iconMargin,
+                            itemView.top + iconMargin,
+                            itemView.left + iconMargin + deleteIcon.intrinsicWidth,
+                            itemView.top + iconMargin + deleteIcon.intrinsicHeight
+                        )
+                    }
+                    dX < 0 -> {
+                        background.setBounds(
+                            itemView.right + dX.toInt(),
+                            itemView.top,
+                            itemView.right,
+                            itemView.bottom
+                        )
+                        deleteIcon.setBounds(
+                            itemView.right - iconMargin - deleteIcon.intrinsicWidth,
+                            itemView.top + iconMargin,
+                            itemView.right - iconMargin,
+                            itemView.top + iconMargin + deleteIcon.intrinsicHeight
+                        )
+                    }
+                    else -> {
+                        background.setBounds(0, 0, 0, 0)
+                    }
+                }
+
+                background.draw(c)
+                deleteIcon.draw(c)
+            }
+        }
+
+        val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
+        itemTouchHelper.attachToRecyclerView(notesRecyclerView)
     }
 
     private fun setupClickListeners() {
@@ -134,6 +267,47 @@ class MainActivity : AppCompatActivity() {
         startActivityForResult(intent, REQUEST_CODE_EDIT_NOTE)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_theme -> {
+                showThemeDialog()
+                true
+            }
+            R.id.action_settings -> {
+                Toast.makeText(this, "Настройки", Toast.LENGTH_SHORT).show()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun showThemeDialog() {
+        val themes = arrayOf("Светлая тема", "Темная тема")
+        val currentIndex = if (currentTheme == "light") 0 else 1
+
+        AlertDialog.Builder(this)
+            .setTitle("Выберите тему оформления")
+            .setSingleChoiceItems(themes, currentIndex) { dialog, which ->
+                val newTheme = if (which == 0) "light" else "dark"
+
+                if (newTheme != currentTheme) {
+                    currentTheme = newTheme
+
+                    sharedPref.edit().putString(KEY_THEME, newTheme).apply()
+
+                    recreate()
+                }
+                dialog.dismiss()
+            }
+            .setNegativeButton("Отмена", null)
+            .show()
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -184,10 +358,4 @@ class MainActivity : AppCompatActivity() {
         loadNotesFromStorage()
         performSearch(searchBar.text.toString())
     }
-
-    data class Note(
-        val title: String,
-        val content: String,
-        val tag: String
-    )
 }

@@ -5,6 +5,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -108,7 +109,7 @@ class TagsActivity : AppCompatActivity() {
 }
 
 class TagAdapter(
-    private val tags: List<String>,
+    private val tags: MutableList<String>,
     private val onTagClick: (String, Int) -> Unit
 ) : androidx.recyclerview.widget.RecyclerView.Adapter<TagAdapter.TagViewHolder>() {
 
@@ -132,7 +133,19 @@ class TagAdapter(
         }
 
         holder.itemView.setOnLongClickListener {
-            Toast.makeText(it.context, "Долгое нажатие для удаления тега", Toast.LENGTH_SHORT).show()
+            AlertDialog.Builder(it.context)
+                .setTitle("Удаление тега")
+                .setMessage("Удалить тег \"$tag\"?")
+                .setPositiveButton("Удалить") { dialog, _ ->
+                    tags.removeAt(position)
+                    notifyItemRemoved(position)
+                    Toast.makeText(it.context, "Тег удален", Toast.LENGTH_SHORT).show()
+                    dialog.dismiss()
+                }
+                .setNegativeButton("Отмена") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .show()
             true
         }
     }
